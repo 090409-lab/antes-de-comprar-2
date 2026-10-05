@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Antes de Comprar — projeto de conscientização sobre consumismo, compras por impulso e consumo consciente.">
+<title>Antes de Comprar | Consumo Consciente</title>
+<style>
+:root{
+ --bg:#f7f8f6;--paper:#fff;--ink:#17221e;--muted:#68756f;
+ --green:#1f5a49;--green2:#2e735d;--dark:#14382e;--mint:#e7f1ec;
+ --cream:#f5eddf;--gold:#bd8b45;--line:#dfe7e2;
+ --shadow:0 24px 70px rgba(24,54,44,.10);--radius:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+.container{width:min(1180px,92%);margin:auto}
+.topline{height:4px;background:linear-gradient(90deg,var(--green),var(--gold),var(--green2))}
+header{position:sticky;top:0;z-index:50;background:rgba(247,248,246,.92);backdrop-filter:blur(18px);border-bottom:1px solid rgba(223,231,226,.8)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:850;letter-spacing:-.4px;color:var(--green)}
+.brandmark{width:35px;height:35px;border-radius:11px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:.9rem;box-shadow:0 6px 15px rgba(31,90,73,.2)}
+.brand span{color:var(--gold)}
+nav{display:flex;align-items:center;gap:25px;color:#53615b;font-size:.88rem;font-weight:700}
+nav a{transition:.2s}nav a:hover{color:var(--green)}
+.nav-cta{padding:9px 14px;border-radius:10px;background:var(--green);color:#fff}
+.hero{position:relative;overflow:hidden;padding:105px 0 100px;background:
+ radial-gradient(circle at 83% 24%,rgba(189,139,69,.17),transparent 24%),
+ radial-gradient(circle at 8% 75%,rgba(46,115,93,.10),transparent 24%),
+ linear-gradient(135deg,#edf4f0,#f8f8f5 60%,#f5efe3)}
+.hero-grid{display:grid;grid-template-columns:1.14fr .86fr;gap:75px;align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid #d4e3dc;background:rgba(255,255,255,.72);border-radius:999px;color:var(--green);font-size:.74rem;font-weight:850;text-transform:uppercase;letter-spacing:1px;margin-bottom:22px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+h1{font-size:clamp(3.2rem,6.2vw,6rem);line-height:.94;letter-spacing:-5px;font-weight:900;max-width:800px}
+h1 em{font-style:normal;color:var(--green)}
+.hero-lead{font-size:1.12rem;color:var(--muted);max-width:700px;margin:25px 0 31px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 19px;border-radius:13px;font-size:.92rem;font-weight:800;border:1px solid transparent;transition:.2s;cursor:pointer}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--green);color:#fff;box-shadow:0 10px 25px rgba(31,90,73,.2)}
+.btn-light{background:#fff;border-color:var(--line);color:var(--ink)}
+.hero-panel{background:rgba(255,255,255,.88);border:1px solid rgba(214,225,219,.95);border-radius:30px;padding:32px;box-shadow:var(--shadow);position:relative}
+.panel-label{font-size:.72rem;font-weight:850;text-transform:uppercase;letter-spacing:1.5px;color:var(--green2)}
+.panel-title{font-size:1.5rem;font-weight:850;line-height:1.2;margin:11px 0 23px}
+.thought{background:var(--mint);border-radius:18px;padding:20px;margin-bottom:11px}
+.thought strong{display:block;margin-bottom:3px}.thought span{color:var(--muted);font-size:.9rem}
+.hero-panel small{color:var(--muted)}
+section{padding:92px 0}
+.eyebrow{color:var(--green2);font-size:.71rem;text-transform:uppercase;letter-spacing:2px;font-weight:900;margin-bottom:10px}
+.section-head{max-width:770px;margin-bottom:40px}
+h2{font-size:clamp(2rem,3.7vw,3.1rem);line-height:1.08;letter-spacing:-1.8px;margin-bottom:14px}
+.section-head p{font-size:1rem;color:var(--muted)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:29px;box-shadow:0 7px 25px rgba(25,50,41,.035);transition:.22s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.icon{width:45px;height:45px;display:grid;place-items:center;border-radius:14px;background:var(--mint);font-size:1.2rem;margin-bottom:16px}
+.card h3{font-size:1.08rem;margin-bottom:8px}.card p{font-size:.93rem;color:var(--muted)}
+.muted-section{background:#eef3f0}
+.dark-section{background:var(--dark);color:#fff}.dark-section .eyebrow{color:#b9d8cb}.dark-section .section-head p{color:#c1d0ca}
+.solution-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:start}
+.number-list{display:grid;gap:13px}.number-item{display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start}
+.number{width:38px;height:38px;border-radius:12px;background:var(--mint);color:var(--green);display:grid;place-items:center;font-weight:900}
+.number-item h3{font-size:1rem;margin-bottom:3px}.number-item p{font-size:.88rem;color:var(--muted)}
+.path{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.path-step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:21px}
+.path-step b{display:block;color:var(--green);font-size:.74rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px}.path-step strong{display:block;font-size:.98rem;margin-bottom:5px}.path-step span{font-size:.84rem;color:var(--muted)}
+.quiz-wrap{display:grid;grid-template-columns:.65fr 1.35fr;gap:30px;align-items:start}
+.quiz-intro{padding:12px 5px}.quiz-intro h2{margin-bottom:14px}.quiz-intro p{color:var(--muted);font-size:.95rem}.mini-note{margin-top:20px;padding:14px;border-left:3px solid var(--gold);background:var(--cream);border-radius:0 12px 12px 0;font-size:.83rem;color:#63543f}
+.quiz{background:#fff;border:1px solid var(--line);border-radius:28px;padding:32px;box-shadow:var(--shadow)}
+.quiz-top{display:flex;justify-content:space-between;color:var(--muted);font-size:.78rem;font-weight:750}.bar{height:7px;background:#edf1ef;border-radius:99px;overflow:hidden;margin:14px 0 30px}.bar i{display:block;width:0;height:100%;background:var(--green);transition:.3s}
+.question{font-size:1.28rem;font-weight:850;line-height:1.3;margin-bottom:20px}.options{display:grid;gap:10px}.option{width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px 16px;cursor:pointer;transition:.18s}.option:hover{border-color:#91b2a4;background:#f7faf8}.result{display:none;margin-top:20px;padding:19px;border-radius:15px;background:var(--mint);color:#284d40;font-size:.92rem}.restart{display:none;margin-top:14px}
+.accordion{display:grid;gap:10px}.acc{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden}.acc button{width:100%;padding:18px 19px;background:#fff;border:0;text-align:left;font-weight:800;cursor:pointer;display:flex;justify-content:space-between}.acc div{display:none;padding:0 19px 18px;color:var(--muted);font-size:.9rem}.acc.open div{display:block}
+.callout{border-radius:30px;background:linear-gradient(135deg,#1d5948,#2d765f);padding:48px;color:#fff;box-shadow:var(--shadow)}.callout h2{max-width:700px}.callout p{color:#dbe9e3;max-width:700px;margin:10px 0 25px}
+.team{display:flex;flex-wrap:wrap;gap:10px}.person{padding:10px 14px;border-radius:999px;background:#f2f5f3;border:1px solid var(--line);font-size:.83rem;font-weight:750;color:#45534d}
+.note{background:#fbf5e8;border:1px solid #e8d7b4;border-radius:15px;padding:18px;color:#5e513d;font-size:.88rem}
+footer{background:#15231e;color:#dce8e2;padding:50px 0 30px}.footer-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:40px}.footer-brand{font-weight:850;color:#fff;font-size:1.1rem}.footer-brand span{color:#d1a05a}.footer-copy{color:#aabbb3;font-size:.86rem;max-width:580px;margin-top:9px}.footer-title{font-weight:800;margin-bottom:9px}.footer-team{color:#aabbb3;font-size:.84rem}.copyright{border-top:1px solid rgba(255,255,255,.1);margin-top:32px;padding-top:18px;color:#879991;font-size:.78rem}
+@media(max-width:900px){.hero-grid,.solution-grid,.quiz-wrap,.footer-grid{grid-template-columns:1fr}.grid3{grid-template-columns:1fr 1fr}.path{grid-template-columns:1fr 1fr}.hero{padding:75px 0}.hero-grid{gap:40px}h1{letter-spacing:-3px}}
+@media(max-width:620px){nav{display:none}.grid3,.grid2,.path{grid-template-columns:1fr}section{padding:68px 0}h1{font-size:3.3rem}.hero-panel{padding:24px}.quiz{padding:23px}.callout{padding:30px}}
+</style>
+
+<style id="quiz-visibility-fix">
+.quiz-section{background:#f5f7fb!important}
+.quiz-card{background:#fff!important;border:1px solid #d9e0ea!important;border-radius:24px!important;padding:32px!important;box-shadow:0 16px 45px rgba(15,23,42,.10)!important;color:#172033!important;max-width:850px!important;margin:0 auto!important}
+.quiz-card *{color:#172033}
+.quiz-progress{font-weight:800!important;font-size:15px!important;margin-bottom:26px!important}
+.progress-track{height:9px!important;background:#e4e9f1!important;border-radius:99px!important;overflow:hidden!important;margin-top:10px!important}
+.progress-fill{height:100%!important;width:20%!important;background:#2563eb!important;border-radius:99px!important;transition:width .25s ease!important}
+.question{display:none}.question.active{display:block!important}
+.question h3{color:#101828!important;font-size:clamp(22px,3vw,30px)!important;line-height:1.25!important;margin:0 0 22px!important}
+.question label{display:flex!important;align-items:center!important;gap:13px!important;width:100%!important;box-sizing:border-box!important;background:#f8fafc!important;border:2px solid #d7dee8!important;border-radius:14px!important;padding:16px 18px!important;margin:11px 0!important;color:#1f2937!important;font-size:17px!important;font-weight:650!important;cursor:pointer!important}
+.question label:hover{border-color:#2563eb!important;background:#eff6ff!important}
+.question label:has(input:checked){border-color:#2563eb!important;background:#dbeafe!important}
+.question input[type=radio]{width:20px!important;height:20px!important;min-width:20px!important;accent-color:#2563eb!important}
+.quiz-actions{display:flex!important;justify-content:space-between!important;gap:12px!important;margin-top:28px!important}
+.quiz-actions .btn{cursor:pointer!important}
+.quiz-result{text-align:center!important;padding:20px 5px!important}
+.quiz-result h3{color:#101828!important;font-size:28px!important}
+.quiz-result p{color:#475467!important;line-height:1.7!important}
+.result-icon{width:58px!important;height:58px!important;display:grid!important;place-items:center!important;margin:0 auto 14px!important;border-radius:50%!important;background:#dcfce7!important;color:#166534!important;font-size:30px!important;font-weight:900!important}
+@media(max-width:600px){.quiz-card{padding:22px!important}.question h3{font-size:22px!important}.question label{font-size:16px!important;padding:14px!important}}
+</style>
+
+</head>
+<body>
+<div class="topline"></div>
+<header>
+ <div class="container nav">
+  <a class="brand" href="#inicio"><span class="brandmark">↗</span>Antes de <span>Comprar</span></a>
+  <nav>
+   <a href="#problema">O problema</a><a href="#solucao">A solução</a><a href="#quiz">Refletir</a><a href="#acolhimento">Acolhimento</a><a class="nav-cta" href="#equipe">Equipe</a>
+  </nav>
+ </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+ <div class="container hero-grid">
+  <div>
+   <div class="kicker"><i class="dot"></i> Consumo consciente • Projeto educativo</div>
+   <h1>Nem tudo que você quer, <em>você precisa.</em></h1>
+   <p class="hero-lead">Antes de Comprar é uma iniciativa de conscientização que ajuda pessoas a entenderem o consumismo, reconhecerem compras por impulso e refletirem antes de gastar.</p>
+   <div class="actions"><a class="btn btn-primary" href="#quiz">Fazer uma reflexão <span>→</span></a><a class="btn btn-light" href="#solucao">Conhecer o projeto</a></div>
+  </div>
+  <aside class="hero-panel">
+   <div class="panel-label">Uma pausa antes da compra</div>
+   <div class="panel-title">Pergunte a si mesmo:</div>
+   <div class="thought"><strong>Eu realmente preciso disso?</strong><span>Necessidade ou vontade do momento?</span></div>
+   <div class="thought"><strong>Eu posso pagar?</strong><span>Essa escolha cabe na minha realidade?</span></div>
+   <div class="thought"><strong>Por que eu quero comprar?</strong><span>Escolha pessoal ou influência?</span></div>
+   <small>Não existe julgamento aqui. Existe espaço para pensar.</small>
+  </aside>
+ </div>
+</section>
+
+<section id="problema">
+ <div class="container">
+  <div class="section-head"><div class="eyebrow">Por que falar sobre isso?</div><h2>O problema não é consumir. É quando consumir deixa de ser uma escolha consciente.</h2><p>Publicidade, redes sociais, comparação e pressão por status podem transformar desejos passageiros em compras que não estavam nos planos.</p></div>
+  <div class="grid3">
+   <article class="card"><div class="icon">📱</div><h3>Influência das redes</h3><p>Conteúdos e estilos de vida exibidos na internet podem criar a sensação de que determinados produtos são necessários para pertencer ou ter sucesso.</p></article>
+   <article class="card"><div class="icon">🛒</div><h3>Compra por impulso</h3><p>A emoção do momento pode fazer uma pessoa comprar sem avaliar necessidade, utilidade, preço ou consequências.</p></article>
+   <article class="card"><div class="icon">🌱</div><h3>Impactos reais</h3><p>O excesso de consumo pode gerar dificuldades financeiras, desperdício, descarte excessivo e impactos ambientais e sociais.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="muted-section" id="solucao">
+ <div class="container">
+  <div class="solution-grid">
+   <div>
+    <div class="eyebrow">A nossa solução</div>
+    <h2>Informar, fazer refletir e acolher.</h2>
+    <p style="color:var(--muted);margin-bottom:22px">A proposta não pretende proibir o consumo nem culpar quem compra. Queremos oferecer informação acessível e ferramentas simples para ajudar as pessoas a fazer escolhas mais conscientes.</p>
+    <a class="btn btn-primary" href="#caminho">Ver como funciona →</a>
+   </div>
+   <div class="number-list">
+    <div class="number-item"><div class="number">01</div><div><h3>Site educativo</h3><p>Explicações claras sobre consumismo, compras por impulso e consequências financeiras, sociais e ambientais.</p></div></div>
+    <div class="number-item"><div class="number">02</div><div><h3>Escolas públicas</h3><p>Aulas, debates, oficinas e atividades sobre educação financeira, redes sociais e consumo consciente.</p></div></div>
+    <div class="number-item"><div class="number">03</div><div><h3>ONGs, palestras e seminários</h3><p>Parcerias para ampliar o alcance e oferecer ações gratuitas para diferentes comunidades.</p></div></div>
+    <div class="number-item"><div class="number">04</div><div><h3>Campanha digital</h3><p>Vídeos, posts e materiais que levem a reflexão para além do espaço físico.</p></div></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="caminho">
+ <div class="container">
+  <div class="section-head"><div class="eyebrow">Experiência do usuário</div><h2>Um caminho simples para começar.</h2><p>A menor versão do projeto já consegue demonstrar a ideia: informação + reflexão + acolhimento.</p></div>
+  <div class="path">
+   <div class="path-step"><b>01 · Descobrir</b><strong>Encontrar o projeto</strong><span>Escola, ONG, palestra, seminário ou internet.</span></div>
+   <div class="path-step"><b>02 · Entender</b><strong>Conhecer o problema</strong><span>Aprender como funciona o consumismo.</span></div>
+   <div class="path-step"><b>03 · Refletir</b><strong>Responder ao quiz</strong><span>Observar os próprios hábitos sem julgamento.</span></div>
+   <div class="path-step"><b>04 · Agir</b><strong>Escolher com calma</strong><span>Aplicar pequenas mudanças no dia a dia.</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="section quiz-section" id="quiz">
+  <div class="section-head">
+    <span class="eyebrow">INTERAÇÃO</span>
+    <h2>Antes de comprar, pare por um minuto.</h2>
+    <p>Responda às perguntas abaixo. O objetivo é ajudar você a refletir sobre seus hábitos de consumo — não é um diagnóstico.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-progress">
+      <span id="quizProgress">Pergunta 1 de 5</span>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <form id="quizForm">
+      <div class="question active">
+        <h3>1. Você compra coisas por influência das redes sociais?</h3>
+        <label><input type="radio" name="q1" value="sim"> <span>Sim, com frequência</span></label>
+        <label><input type="radio" name="q1" value="asvezes"> <span>Às vezes</span></label>
+        <label><input type="radio" name="q1" value="nao"> <span>Não</span></label>
+      </div>
+      <div class="question">
+        <h3>2. Antes de comprar, você costuma pesquisar sobre o produto?</h3>
+        <label><input type="radio" name="q2" value="sim"> <span>Sim</span></label>
+        <label><input type="radio" name="q2" value="asvezes"> <span>Às vezes</span></label>
+        <label><input type="radio" name="q2" value="nao"> <span>Não</span></label>
+      </div>
+      <div class="question">
+        <h3>3. Você já comprou algo e depois percebeu que não precisava?</h3>
+        <label><input type="radio" name="q3" value="sim"> <span>Sim</span></label>
+        <label><input type="radio" name="q3" value="asvezes"> <span>Algumas vezes</span></label>
+        <label><input type="radio" name="q3" value="nao"> <span>Não</span></label>
+      </div>
+      <div class="question">
+        <h3>4. Você costuma esperar antes de fazer uma compra por impulso?</h3>
+        <label><input type="radio" name="q4" value="sim"> <span>Sim, costumo esperar</span></label>
+        <label><input type="radio" name="q4" value="asvezes"> <span>Às vezes</span></label>
+        <label><input type="radio" name="q4" value="nao"> <span>Não, compro na hora</span></label>
+      </div>
+      <div class="question">
+        <h3>5. Antes de comprar, você pergunta se realmente precisa daquele produto?</h3>
+        <label><input type="radio" name="q5" value="sim"> <span>Sim</span></label>
+        <label><input type="radio" name="q5" value="asvezes"> <span>Às vezes</span></label>
+        <label><input type="radio" name="q5" value="nao"> <span>Não</span></label>
+      </div>
+
+      <div class="quiz-actions">
+        <button type="button" class="btn secondary" id="prevBtn" style="display:none;">Voltar</button>
+        <button type="button" class="btn primary" id="nextBtn">Próxima pergunta</button>
+      </div>
+    </form>
+
+    <div class="quiz-result" id="quizResult" style="display:none;">
+      <div class="result-icon">✓</div>
+      <h3>Obrigado por refletir.</h3>
+      <p>Não existe uma resposta “certa” aqui. O mais importante é perceber o que influencia suas decisões e criar o hábito de pensar antes de comprar.</p>
+      <button type="button" class="btn primary" id="restartBtn">Refazer questionário</button>
+    </div>
+  </div>
+</section>
+
+<section id="acolhimento">
+ <div class="container">
+  <div class="section-head"><div class="eyebrow">Acolhimento</div><h2>Você não precisa lidar com isso sozinho.</h2><p>O consumo excessivo pode estar relacionado, em algumas situações, a emoções, pressão social ou dificuldades pessoais. O projeto existe para orientar, não para apontar culpados.</p></div>
+  <div class="grid2">
+   <article class="card"><div class="icon">🤝</div><h3>Se isso acontece com você</h3><p>Observe o que sente antes de comprar, tente fazer uma pausa e converse com alguém de confiança. Pequenas mudanças já podem ser um começo.</p></article>
+   <article class="card"><div class="icon">💬</div><h3>Quando procurar apoio</h3><p>Se as compras estiverem causando sofrimento ou dificuldades importantes, procure profissionais e serviços especializados, como psicólogos e assistentes sociais.</p></article>
+  </div>
+  <div class="note" style="margin-top:20px"><strong>Importante:</strong> este site é educativo e não substitui atendimento psicológico, médico, financeiro ou social profissional.</div>
+ </div>
+</section>
+
+<section>
+ <div class="container">
+  <div class="callout">
+   <div class="eyebrow" style="color:#b9d8cb">Uma ideia para levar com você</div>
+   <h2>Não é sobre comprar menos a qualquer custo. É sobre escolher melhor.</h2>
+   <p>Antes de finalizar uma compra, experimente esperar alguns minutos, pesquisar, comparar e perguntar a si mesmo se aquilo realmente faz sentido.</p>
+   <a class="btn" href="#quiz">Quero refletir novamente →</a>
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="container">
+  <div class="section-head"><div class="eyebrow">Planejamento do projeto</div><h2>O que é essencial agora?</h2></div>
+  <div class="grid3">
+   <article class="card"><div class="icon">✓</div><h3>Indispensável</h3><p>Site, informações claras, questionário, ações em escolas, ONGs, palestras e seminários.</p></article>
+   <article class="card"><div class="icon">＋</div><h3>Melhora a experiência</h3><p>Maior visibilidade, marketing, investimentos e mais recursos para o projeto e organizações parceiras.</p></article>
+   <article class="card"><div class="icon">◷</div><h3>Pode ficar para depois</h3><p>O aplicativo é uma evolução futura. A proposta já funciona sem depender dele.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="muted-section" id="equipe">
+ <div class="container">
+  <div class="section-head"><div class="eyebrow">Equipe</div><h2>Um projeto construído em conjunto.</h2><p>Responsáveis pelo desenvolvimento da proposta de conscientização sobre consumismo.</p></div>
+  <div class="card"><div class="team">
+   <span class="person">Pedro G. Pacheco</span><span class="person">Felipe C. Leal</span><span class="person">Cristiano R. R. De Souza</span><span class="person">Antônio Gabriel</span><span class="person">Carlos Eduardo</span>
+  </div></div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="container">
+  <div class="footer-grid">
+   <div><div class="footer-brand">Antes de <span>Comprar</span></div><p class="footer-copy">Projeto educativo de conscientização sobre consumismo, compras por impulso e consumo consciente. Informação para ajudar pessoas a escolherem com mais calma e consciência.</p></div>
+   <div><div class="footer-title">Projeto desenvolvido por</div><div class="footer-team">Pedro G. Pacheco · Felipe C. Leal · Cristiano R. R. De Souza · Antônio Gabriel · Carlos Eduardo</div></div>
+  </div>
+  <div class="copyright">© 2026 Antes de Comprar · Projeto educacional</div>
+ </div>
+</footer>
+
+<script>
+const questions=[
+ {q:"Você compra coisas por influência das redes sociais?",o:["Frequentemente","Às vezes","Raramente","Nunca"]},
+ {q:"Antes de comprar, você costuma pesquisar sobre o produto?",o:["Sempre","Na maioria das vezes","Poucas vezes","Nunca"]},
+ {q:"Você já comprou algo e depois percebeu que não precisava?",o:["Muitas vezes","Algumas vezes","Raramente","Nunca"]},
+ {q:"Você costuma esperar antes de fazer uma compra por impulso?",o:["Sempre","Às vezes","Raramente","Nunca"]},
+ {q:"Antes de comprar, você pergunta se realmente precisa daquele produto?",o:["Sempre","Às vezes","Raramente","Nunca"]}
+];
+let current=0,answers=[];
+const q=document.getElementById("question"),opts=document.getElementById("options"),counter=document.getElementById("counter"),percent=document.getElementById("percent"),bar=document.getElementById("bar"),result=document.getElementById("result"),restart=document.getElementById("restart");
+function render(){
+ const x=questions[current], pct=Math.round(current/questions.length*100);
+ counter.textContent=`Pergunta ${current+1} de ${questions.length}`;percent.textContent=pct+"%";bar.style.width=pct+"%";q.textContent=x.q;opts.innerHTML="";
+ x.o.forEach((t,i)=>{const b=document.createElement("button");b.className="option";b.textContent=t;b.onclick=()=>answer(i);opts.appendChild(b)});
+}
+function answer(i){answers.push(i);if(current<questions.length-1){current++;render()}else finish()}
+function finish(){
+ bar.style.width="100%";percent.textContent="100%";counter.textContent="Reflexão concluída";q.textContent="Obrigado por parar e pensar antes de comprar.";opts.innerHTML="";
+ const score=answers.reduce((a,b)=>a+b,0);let msg=score<=4?"Suas respostas indicam que você já costuma refletir bastante antes de comprar. Continue valorizando escolhas conscientes.":score<=8?"Suas respostas mostram espaço para algumas pequenas mudanças. Uma pausa antes da compra pode ajudar a decidir com mais calma.":"Talvez valha observar com mais atenção o que desperta sua vontade de comprar. Experimente esperar, pesquisar e perguntar se a compra realmente é necessária.";
+ result.style.display="block";result.textContent=msg+" Este resultado é educativo e não representa um diagnóstico.";restart.style.display="inline-flex";
+}
+restart.onclick=()=>{current=0;answers=[];result.style.display="none";restart.style.display="none";render()};
+document.querySelectorAll(".acc button").forEach(b=>b.onclick=()=>b.parentElement.classList.toggle("open"));
+render();
+</script>
+
+<script id="quiz-fix-script">
+(function(){
+  const form=document.getElementById('quizForm'); if(!form)return;
+  const questions=[...form.querySelectorAll('.question')];
+  const next=document.getElementById('nextBtn'), prev=document.getElementById('prevBtn');
+  const progress=document.getElementById('quizProgress'), fill=document.getElementById('progressFill');
+  const result=document.getElementById('quizResult'), restart=document.getElementById('restartBtn');
+  let current=0;
+  function show(i){
+    current=i;
+    questions.forEach((q,n)=>q.classList.toggle('active',n===i));
+    progress.textContent=`Pergunta ${i+1} de ${questions.length}`;
+    fill.style.width=`${((i+1)/questions.length)*100}%`;
+    prev.style.display=i===0?'none':'inline-flex';
+    next.textContent=i===questions.length-1?'Ver resultado':'Próxima pergunta';
+  }
+  next.onclick=function(){
+    if(!questions[current].querySelector('input:checked')){
+      questions[current].style.outline='2px solid #ef4444';
+      questions[current].style.outlineOffset='8px';
+      setTimeout(()=>questions[current].style.outline='none',900);
+      return;
+    }
+    if(current<questions.length-1) show(current+1);
+    else { form.style.display='none'; document.querySelector('.quiz-progress').style.display='none'; result.style.display='block'; }
+  };
+  prev.onclick=function(){if(current>0)show(current-1)};
+  restart.onclick=function(){form.reset();result.style.display='none';form.style.display='block';document.querySelector('.quiz-progress').style.display='block';show(0)};
+  show(0);
+})();
+</script>
+
+</body>
+</html>
